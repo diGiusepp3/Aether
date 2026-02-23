@@ -1,0 +1,7 @@
+{
+  "name": "Aether: Multi-Agent Orchestrator",
+  "description": "A powerful orchestration platform for managing an army of specialized AI agents for coding, styling, and research.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

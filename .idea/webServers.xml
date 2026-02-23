@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d0acca7d-9953-434c-a0b5-c71a6670661d" name="Aether">
+        <fileTransfer rootFolder="/home/webcrafters/subdomains/aether" accessType="SFTP" host="mgielen.zapto.org" port="22" sshConfigId="af72f385-57a3-473c-be6e-a0221dca4bff" sshConfig="matthias@mgielen.zapto.org:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
