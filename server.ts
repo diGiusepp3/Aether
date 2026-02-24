@@ -5,13 +5,22 @@ import { createServer as createViteServer } from "vite";
 import Database from "better-sqlite3";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import OpenAI from "openai";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const db = new Database("orchestrator.db");
-const aiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const apiKey = process.env.OPENAI_API_KEY;
+
+if (!apiKey) {
+  throw new Error("OPENAI_API_KEY is required for AI orchestration.");
+}
+
+const aiClient = new OpenAI({ apiKey });
 
 // Initialize DB
 db.exec(`
@@ -102,9 +111,12 @@ async function planArmy(goal: string): Promise<PlanResponse> {
 Return a JSON object with { agents: [{ name, role }], tasks: [{ agent_name, description }] }. Roles may include Coder, Stylist, Researcher, Builder.`,
       },
     ],
-    text_format: {
-      type: "json_schema",
-      json_schema: planSchema,
+    text: {
+      format: {
+        name: "plan_schema",
+        type: "json_schema",
+        schema: planSchema,
+      },
     },
   });
 
